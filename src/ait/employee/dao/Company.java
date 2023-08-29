@@ -3,6 +3,7 @@ package ait.employee.dao;
 import ait.employee.model.Employee;
 
 public interface Company {
+    String TITLE = "Apple";
     boolean addEmployee(Employee employee);
 
     Employee removeEmployee(int id);
@@ -10,7 +11,9 @@ public interface Company {
     Employee findEmployee(int id);
     int quantity();
     double totalSalary();
-    double avgSalary();
+    default double avgSalary(){
+        return totalSalary()/quantity();
+    }
 
     double totalSales();
 
