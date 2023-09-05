@@ -3,6 +3,7 @@ package ait.employee.dao;
 import ait.employee.model.Employee;
 import ait.employee.model.SalesManager;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class CompanyArraysImpl implements Company{
@@ -103,13 +104,8 @@ public class CompanyArraysImpl implements Company{
     }
 
     private Employee[] findEmployeesByPredicate(Predicate<Employee> predicate) {
-        int count = 0;
-        for (int i = 0; i < size; i++) {
-            if (predicate.test(employees[i])) {
-                count++;
-            }
-        }
-        Employee[] res = new Employee[count];
+
+        Employee[] res = Arrays.copyOf(employees,employees.length*2);
         for (int i = 0, j = 0; j < res.length; i++) {
             if (predicate.test(employees[i])) {
                 res[j] = employees[i];
